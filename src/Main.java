@@ -1,3 +1,4 @@
+
 import excecao.DadosInvalidos;
 import modelo.Alerta;
 import modelo.EscadaRolante;
