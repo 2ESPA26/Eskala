@@ -1,4 +1,4 @@
-# Escala
+# Eskala
 
 Projeto acadêmico desenvolvido para o desafio da Motiva, na disciplina de Domain Driven Design com Java. A proposta é organizar informações de escadas rolantes, leituras de sensores e ocorrências de manutenção para apoiar o acompanhamento dos equipamentos.
 
@@ -96,35 +96,13 @@ O diretório de trabalho da execução deve ser a **raiz do projeto**, que cont�
 O console começa com:
 
 ```text
-ESCALA - DEMONSTRAÇÃO COM DADOS SIMULADOS
+ESKALA - DEMONSTRAÇÃO COM DADOS SIMULADOS
 Escadas cadastradas: 20
 Leituras carregadas: 100
 ```
 
 Em seguida, apresenta a estação e a escada da primeira leitura, suas medições e o cenário fictício de manutenção. Ao final, o alerta está `ENCERRADO`, a falha possui diagnóstico e retorno à operação, e a intervenção está concluída com dois técnicos, ação realizada e resultado registrados.
 
-## Fluxograma da demonstração
-
-O diagrama representa o fluxo executado pelo `Main`. A criação dos eventos de manutenção é uma etapa programada da demonstração.
-
-```mermaid
-flowchart TD
-    A([Início]) --> B["Criar 8 estações e 20 escadas"]
-    B --> C["Ler e validar o CSV"]
-    C --> D{"Carga válida com 100 leituras?"}
-    D -->|Não| E["Exibir mensagem de erro"]
-    D -->|Sim| F["Exibir estação, escada e leitura de referência"]
-    F --> G["Criar alerta fictício e iniciar análise"]
-    G --> H["Registrar falha fictícia"]
-    H --> I["Abrir intervenção corretiva e adicionar dois técnicos"]
-    I --> J["Registrar diagnóstico e concluir intervenção"]
-    J --> K["Registrar retorno à operação e encerrar alerta"]
-    K --> L["Exibir eventos e intervenção finalizados"]
-    L --> M([Fim])
-    E --> M
-```
-
-Erros de leitura do arquivo são tratados por `IOException`. Dados inválidos e operações recusadas pelas regras do domínio também interrompem a demonstração com uma mensagem no console. A conclusão da intervenção, o retorno à operação e o encerramento do alerta são chamadas explícitas no `Main`.
 
 ## Drivers de teste
 
@@ -148,6 +126,4 @@ Os drivers realizam verificações pelo console. Nos testes de rejeição, mensa
 
 Na verificação desta versão, o código foi compilado com compatibilidade para Java 11 e o `Main` e os 11 drivers foram executados no Java 17, sem falhas sinalizadas nas saídas.
 
-## Escopo desta versão
 
-A aplicação mantém os objetos em memória durante a execução. O CSV fornece as leituras, enquanto os eventos e a manutenção demonstram o funcionamento das classes e suas regras. Persistência em banco de dados, interface gráfica, geração automática de alertas e modelos preditivos não estão implementados nesta versão.
