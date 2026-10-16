@@ -39,9 +39,9 @@ public class PeriodoLeituraDriver {
 
         try {
             new PeriodoLeitura(null, fim);
-            System.out.println("FALHOU: aceitou início nulo.");
+            System.out.println("Falhou: aceitou início nulo.");
         } catch (DadosInvalidos erro) {
-            System.out.println("PASSOU: " + erro.getMessage());
+            System.out.println("Passou: " + erro.getMessage());
         }
 
         try {
@@ -53,16 +53,16 @@ public class PeriodoLeituraDriver {
 
         try {
             new PeriodoLeitura(inicio, inicio);
-            System.out.println("FALHOU: aceitou início e fim iguais.");
+            System.out.println("Falhou: aceitou início e fim iguais.");
         } catch (DadosInvalidos erro) {
-            System.out.println("PASSOU: " + erro.getMessage());
+            System.out.println("Passou: " + erro.getMessage());
         }
 
         try {
             new PeriodoLeitura(fim, inicio);
-            System.out.println("FALHOU: aceitou fim anterior ao início.");
+            System.out.println("Falhou: aceitou fim anterior ao início.");
         } catch (DadosInvalidos erro) {
-            System.out.println("PASSOU: " + erro.getMessage());
+            System.out.println("Passou: " + erro.getMessage());
         }
     }
 }

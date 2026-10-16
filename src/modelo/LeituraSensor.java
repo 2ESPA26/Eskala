@@ -3,31 +3,32 @@ import excecao.DadosInvalidos;
 
 public class LeituraSensor {
 
-    private String id;
-    private EscadaRolante escada;
-    private PeriodoLeitura periodo;
-    private EstadoOperacional estadoOperacional;
-    private float temperaturaAmbiente;
-    private float temperaturaMotor;
-    private float temperaturaRedutor;
-    private float vibracaoMotor;
-    private float vibracaoRedutor;
+    private final String id;
+    private final EscadaRolante escada;
+    private final PeriodoLeitura periodo;
+    private final EstadoOperacional estadoOperacional;
 
-    private float nivelOleo;
-    private Float pressaoOleo;
+    private final float temperaturaAmbiente;
+    private final float temperaturaMotor;
+    private final float temperaturaRedutor;
 
-    private float tensaoLinha;
-    private float correnteLinha;
+    private final float vibracaoMotor;
+    private final float vibracaoRedutor;
 
-    private float potenciaAtiva;
-    private float energiaIntervalo;
+    private final float nivelOleo;
+    private final Float pressaoOleo;
 
-    private float velocidadeMedia;
-    private float velocidadeMinima;
-    private float velocidadeMaxima;
+    private final float tensaoLinha;
+    private final float correnteLinha;
+    private final float potenciaAtiva;
+    private final float energiaIntervalo;
 
-    private Float correntePicoPartida;
-    private Float duracaoPartida;
+    private final float velocidadeMedia;
+    private final float velocidadeMinima;
+    private final float velocidadeMaxima;
+
+    private final Float correntePicoPartida;
+    private final Float duracaoPartida;
     public LeituraSensor(
             String id,
             EscadaRolante escada,
@@ -73,6 +74,28 @@ public class LeituraSensor {
                     "O estado operacional deve ser informado."
             );
         }
+
+        validarNumeroFinito(temperaturaAmbiente, "temperatura ambiente");
+        validarNumeroFinito(temperaturaMotor, "temperatura do motor");
+        validarNumeroFinito(temperaturaRedutor, "temperatura do redutor");
+
+        validarNumeroFinito(vibracaoMotor, "vibração do motor");
+        validarNumeroFinito(vibracaoRedutor, "vibração do redutor");
+
+        validarNumeroFinito(nivelOleo, "nível de óleo");
+        validarNumeroOpcional(pressaoOleo, "pressão de óleo");
+
+        validarNumeroFinito(tensaoLinha, "tensão de linha");
+        validarNumeroFinito(correnteLinha, "corrente de linha");
+        validarNumeroFinito(potenciaAtiva, "potência ativa");
+        validarNumeroFinito(energiaIntervalo, "energia do intervalo");
+
+        validarNumeroFinito(velocidadeMedia, "velocidade média");
+        validarNumeroFinito(velocidadeMinima, "velocidade mínima");
+        validarNumeroFinito(velocidadeMaxima, "velocidade máxima");
+
+        validarNumeroOpcional(correntePicoPartida, "pico de corrente na partida");
+        validarNumeroOpcional(duracaoPartida, "duração da partida");
 
         this.id = id;
         this.escada = escada;
@@ -173,5 +196,50 @@ public class LeituraSensor {
 
     public Float getDuracaoPartida() {
         return duracaoPartida;
+    }
+    private void validarNumeroFinito(float valor, String campo) {
+        if (!Float.isFinite(valor)) {
+            throw new DadosInvalidos(
+                    "O campo " + campo + " deve conter um número finito."
+            );
+        }
+    }
+
+    private void validarNumeroOpcional(Float valor, String campo) {
+        if (valor != null) {
+            validarNumeroFinito(valor, campo);
+        }
+    }
+    @Override
+    public String toString() {
+        return "Leitura: " + id
+                + "\nEscada: " + escada.getId()
+                + "\nPeríodo: " + periodo
+                + "\nEstado operacional: " + estadoOperacional
+                + "\nTemperatura ambiente: " + temperaturaAmbiente + " °C"
+                + "\nTemperatura do motor: " + temperaturaMotor + " °C"
+                + "\nTemperatura do redutor: " + temperaturaRedutor + " °C"
+                + "\nVibração do motor: " + vibracaoMotor + " mm/s"
+                + "\nVibração do redutor: " + vibracaoRedutor + " mm/s"
+                + "\nNível de óleo: " + nivelOleo + " %"
+                + "\nPressão de óleo: "
+                + (pressaoOleo == null
+                ? "Não informada"
+                : pressaoOleo + " bar")
+                + "\nTensão de linha: " + tensaoLinha + " V"
+                + "\nCorrente de linha: " + correnteLinha + " A"
+                + "\nPotência ativa: " + potenciaAtiva + " kW"
+                + "\nEnergia do intervalo: " + energiaIntervalo + " kWh"
+                + "\nVelocidade média: " + velocidadeMedia + " m/s"
+                + "\nVelocidade mínima: " + velocidadeMinima + " m/s"
+                + "\nVelocidade máxima: " + velocidadeMaxima + " m/s"
+                + "\nPico de corrente na partida: "
+                + (correntePicoPartida == null
+                ? "Sem registro de partida"
+                : correntePicoPartida + " A")
+                + "\nDuração da partida: "
+                + (duracaoPartida == null
+                ? "Sem registro de partida"
+                : duracaoPartida + " s");
     }
 }
