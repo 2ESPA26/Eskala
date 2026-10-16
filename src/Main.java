@@ -29,7 +29,7 @@ public class Main {
                 throw new DadosInvalidos("Esta demonstração deve utilizar exatamente 100 leituras.");
             }
 
-            System.out.println("ESCALA - DEMONSTRAÇÃO COM DADOS SIMULADOS");
+            System.out.println("ESKALA - DEMONSTRAÇÃO COM DADOS SIMULADOS");
             System.out.println("Escadas cadastradas: " + escadas.size());
             System.out.println("Leituras carregadas: " + leituras.size());
 

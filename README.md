@@ -1,4 +1,4 @@
-# Escala
+# Eskala
 
 Projeto acadêmico desenvolvido para o desafio da Motiva, na disciplina de Domain Driven Design com Java. A proposta é organizar informações de escadas rolantes, leituras de sensores e ocorrências de manutenção para apoiar o acompanhamento dos equipamentos.
 
@@ -96,7 +96,7 @@ O diretório de trabalho da execução deve ser a **raiz do projeto**, que cont�
 O console começa com:
 
 ```text
-ESCALA - DEMONSTRAÇÃO COM DADOS SIMULADOS
+ESKALA - DEMONSTRAÇÃO COM DADOS SIMULADOS
 Escadas cadastradas: 20
 Leituras carregadas: 100
 ```
